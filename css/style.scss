@@ -1,0 +1,253 @@
+
+$colors : (
+    Gradient-first: hsl(6, 100%, 80%),
+    Gradient-second: hsl(335, 100%, 65%),
+    Pale-Blue: hsl(243, 100%, 93%),
+    Grayish-Blue: hsl(229, 7%, 55%),
+    Dark-Blue: hsl(228, 56%, 26%),
+    Very-Dark-Blue: hsl(229, 57%, 11%)
+);
+
+$size : 14px;
+$weigth : (
+    normal : 400,
+    bolder : 700
+);
+
+$fontfamily : Raleway;
+
+%flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+%grid {
+    display: grid;
+    grid-gap: 20px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $fontfamily;
+}
+
+body {
+    background: url('../images/bg-desktop.png') center 100% no-repeat;
+    background-size: contain;
+    background-color: map-get($colors, Very-Dark-Blue);
+    height: 100vh;
+    @extend %flex;
+
+    @media screen and (max-width : 700px ) {
+        background: url('../images/bg-mobile.png') center 100% no-repeat;
+        background-color: map-get($colors, Very-Dark-Blue);
+        background-size: cover;
+    }
+
+    & .container {
+        @extend %grid;
+        grid-template-columns: 2fr 3fr;
+        width: 65%;
+        margin: 0 auto;
+        align-items: flex-end;
+        transform: translateY(-36px);
+
+        @media screen and (max-width : 700px ) {
+            // border: 1px solid red;
+            width: 90%;
+            grid-template-columns: none;
+            grid-row-gap: 15px;
+            
+        }
+
+        & .logo_icons {
+            background-color: map-get($colors, Dark-Blue );
+            @extend %grid;
+            border-radius: 5px;
+            border-top-right-radius: 75px;
+            padding: 40px 100px 25px 30px;
+            
+            @media screen and (max-width : 700px ) {
+                // border: 1px solid red;
+                width: 100%;
+                padding: 30px;
+            }
+            
+            & .logo img{
+                width: 95px;
+                cursor: pointer;
+
+                @media screen and (max-width : 700px ) {
+                    width: 100px;
+                }
+            }
+
+            & .icons {
+                // border: 1px solid red;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-column-gap: 12px;
+                @media screen and (max-width : 700px ) {
+                    // border: 1px solid red;
+                    grid-column-gap: 8px;
+                }
+
+                & .icon {
+                    background: map-get($map: $colors, $key: Very-Dark-Blue);
+                    border-radius: 5px;
+                    padding: 20px;
+                    width: 35px;
+                    height: 35px;
+                    cursor: pointer;
+                    @extend %flex;
+
+                    @media screen and (max-width : 700px ) {
+                        // border: 1px solid red;
+                        padding: 18px;
+                    }
+
+                    & img {
+                        width: 25px;
+                    }
+                }
+            }
+        }
+
+        & .details {
+            background-color: map-get($map: $colors, $key: Dark-Blue);
+            color: map-get($map: $colors, $key: Pale-Blue);
+            font-size: $size;
+            @extend %flex;
+            padding: 30px 30px 25px;
+            border-radius: 5px;
+
+            @media screen and (max-width : 700px ) {
+                // border: 1px solid red;
+                width: 100%;
+                padding: 15px 15px 35px;
+            }
+
+            & .description {
+                // border: 1px solid red;
+                flex: 1;
+                display: grid;
+                grid-row-gap: 12px;
+                position: relative;
+                @media screen and (max-width : 700px ) {
+                    // border: 1px solid red;
+                }
+
+                & .used_size {
+                    font-size: $size - 2;
+                    letter-spacing: 1px;
+                    @media screen and (max-width : 700px ) {
+                        // border: 1px solid red;
+                        letter-spacing: 0;
+                        text-align: center;
+                        font-size: $size - 1;
+                    }
+                    & .bold {
+                        font-weight: map-get($map: $weigth, $key: bolder);
+                    }
+                }
+
+                & .left_size {
+                    position: absolute;
+                    right: 0;
+                    top: -100%;
+                    background-color: #FFF;
+                    font-weight: map-get($map: $weigth, $key: bolder);
+                    color: map-get($map: $colors, $key: Very-Dark-Blue);
+                    font-size: $size + 18px;
+                    @extend %flex;
+                    justify-content: center;
+                    border-radius: 5px;
+                    padding: 7px 20px;
+
+                    @media screen and (max-width : 700px ) {
+                        // border: 1px solid red;
+                        top: 120%;
+                        right: 53%;
+                        transform: translateX(50%);
+                        width: 140px;
+                        padding: 5px 10px;
+                    }
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: 0;
+                        bottom: -25%;
+                        border-color: transparent #FFF transparent transparent;
+                        border-width: 13px;
+                        border-style: solid;
+
+                        @media screen and (max-width : 700px ) {
+                            // border: 1px solid red;
+                            display: none;
+                        }
+                    }
+
+                    & .gradish_blue {
+                        color: map-get($map: $colors, $key: Grayish-Blue);
+                        text-transform: uppercase;
+                        font-size: $size - 2;
+                        margin-left: 10px;
+                        // border: 1px solid red;
+                    }
+                }
+
+                & .progress {
+                    display: grid;
+                    grid-row-gap: 6px;
+                    & .progress_bar {
+                        position: relative;
+                        height: $size;
+                        width: 99.5%;
+                        margin: 0 auto;
+                        background-color: map-get($map: $colors, $key: Very-Dark-Blue);
+                        border-radius: 20px;
+                        
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            height: 70%;
+                            margin: auto;
+                            width: 70%;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            border-radius: 20px;
+                            background: linear-gradient(to right, map-get($colors, Gradient-first), map-get($colors, Gradient-second));
+                        }
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            width: 8px;
+                            height: 60%;
+                            top: 50%;
+                            left: 67.5%;
+                            transform: translateY(-50%);
+                            border-radius: 50%;
+                            background: map-get($map: $colors, $key: Pale-Blue);
+                        }
+                    }
+    
+                    & .sizes {
+                        // border: 1px solid red;
+                        @extend %flex;
+                        justify-content: space-between;
+                        & .size {
+                            font-weight: map-get($weigth, bolder);
+                            font-size: $size - 2;
+                        }
+                    }
+                }
+               
+            }
+        }
+    }
+}
